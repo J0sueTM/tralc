@@ -1,0 +1,32 @@
+{
+  "name": "tralc",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "concurrently \"yarn dev:frontend\" \"yarn dev:backend\"",
+    "dev:backend": "cd src/go && go run main.go",
+    "dev:frontend": "concurrently \"rollup -c -w\" \"yarn watch:tailwind\"",
+    "start": "sirv public --no-clear",
+    "watch:tailwind": "postcss src/css/index.css -o public/tailwind_bundle.css -w",
+    "build:tailwind": "cross-env NODE_ENV=production postcss src/css/index.css public/tailwind_bundle.css -w"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
+    "rollup": "^2.3.4",
+    "rollup-plugin-css-only": "^3.1.0",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-svelte": "^7.0.0",
+    "rollup-plugin-terser": "^7.0.0",
+    "svelte": "^3.0.0",
+    "autoprefixer": "^9",
+    "concurrently": "^7.0.0",
+    "cross-env": "^7.0.3",
+    "postcss-cli": "^7",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+  },
+  "dependencies": {
+    "sirv-cli": "^2.0.0"
+  }
+}
